@@ -1,0 +1,49 @@
+const periods = [{
+    id:1,
+    start:'8:00',
+    end:'8:55'
+},{
+    id:2,
+    start:'9:00',
+    end:'9:55'
+},{
+    id:3,
+    start:'10:30',
+    end:'11:25'
+},{
+    id:4,
+    start:'11:30',
+    end:'12:25'
+},{
+    id:5,
+    start:'1:00',
+    end:'2:00'
+},{
+    id:6,
+    start:'2:00',
+    end:'3:00'
+},{
+    id:7,
+    start:'3:00',
+    end:'4:00'
+},{
+    id:8,
+    start:'4:00',
+    end:'5:00'
+},{
+    id:9,
+    start:'5:00',
+    end:'6:00'
+},{
+    id:10,
+    start:'6:00',
+    end:'7:00'
+},{
+    id:11,
+    start:'7:00',
+    end:'8:00'
+}
+]
+export default periods;
+
+
