@@ -1,0 +1,22 @@
+Code Generator
+$.ajax({
+            url: '/students/ResultCheck/PrintResultSlip',
+            data: { acadyearin: 2021, semin: 1 },
+            cache: false,
+            complete: ()=>console.log('Doe'),
+            success: function (data, textStatus, xhr) {
+                console.log(data);
+            }
+        });
+
+
+        Lecturer's Assessment
+        document.querySelectorAll("label input[value='1']").forEach(input=>{
+            input.checked=true;
+        });
+
+document.querySelectorAll("label input[value='1']").forEach((input,index)=>{
+    if(index!==14){
+        input.checked=true
+    }
+});

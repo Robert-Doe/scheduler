@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,createContext} from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -39,9 +39,14 @@ import {DeptBatchCourses} from "./pages/department/DeptBatchCourses";
 import AlgorithmScheduler from "./pages/algorithm/AlgorithmScheduler";
 
 
+
+export const SessionContext = createContext();
+
 function App() {
+    const [interim, setInterim] = useState([]);
+
     return (
-        <>
+        <SessionContext.Provider value={{interim, setInterim}}>
             <Router>
                 <Navbar/>
                 <Switch>
@@ -99,7 +104,7 @@ function App() {
 
                 </Switch>
             </Router>
-        </>
+            </SessionContext.Provider>
     );
 }
 

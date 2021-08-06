@@ -237,6 +237,31 @@ text{
   /*display:block;*/
   width:200px;
   height:200px;
+/*  animation-name: rotate;
+  animation-duration: 0.7s;*/
+  -webkit-animation: rotation 9s infinite linear;
+}
+
+/*.schedule-percentage:hover svg{
+  animation-name: rotate;
+  animation-duration: 0.7s;
+}*/
+
+/*@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}*/
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
 }
 
 
