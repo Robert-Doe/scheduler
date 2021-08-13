@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 
 function ViewHall(){
     let {id}=useParams()
@@ -7,8 +7,8 @@ function ViewHall(){
         <section>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
-                    <li className="breadcrumb-item"><a href="http://localhost:3000/halls">Halls</a></li>
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                    <li className="breadcrumb-item"><Link to="/halls">Halls</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">View</li>
                 </ol>
             </nav>

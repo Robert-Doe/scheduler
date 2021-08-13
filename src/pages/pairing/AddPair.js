@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {Link} from "react-router-dom";
 
 function AddPair() {
     const lecturerRef = useRef();
@@ -124,8 +125,8 @@ function AddPair() {
 
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/pairings">Pairings</a></li>
+                        <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                        <li className="breadcrumb-item"><Link to="/pairings">Pairings</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>

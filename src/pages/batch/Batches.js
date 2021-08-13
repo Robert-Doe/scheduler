@@ -26,18 +26,18 @@ function Batches() {
     }, [])
 
 
-    const viewBatchHandler = (e) => {
+   /* const viewBatchHandler = (e) => {
         const targetFile = e.target.parentNode;
         console.log(targetFile.childNodes[0].textContent);
         window.location.href = `http://localhost:3000/batches/view/${targetFile.childNodes[0].textContent}`
 
-    }
+    }*/
 
     return (
         <section className={'container mt-5 py-5'}>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to="http://localhost:3000/">Home</Link></li>
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                     <li className="breadcrumb-item active">Batches</li>
                 </ol>
             </nav>
@@ -49,18 +49,20 @@ function Batches() {
                     <th>Batch Size</th>
                     <th>Year</th>
                     <th>Department</th>
+                    <th>View Schedule</th>
                 </tr>
                 </thead>
                 <tbody>
                 {batchList && batchList.map((batch) => {
                     const {_id, name, class_size, year, dept_id} = batch;
                     return (
-                        <tr onClick={viewBatchHandler} key={Math.random() * 10000}>
-                            <td>{_id}</td>
+                        <tr /*onClick={viewBatchHandler} */key={Math.random() * 10000}>
+                            <td><Link to={`batches/view/${_id}`}>{_id}</Link></td>
                             <td>{name}</td>
                             <td>{class_size}</td>
                             <td>{year}</td>
                             <td>{dept_id}</td>
+                            <td ><Link class={'btn btn-warning w-75 h-75 text-light font-weight-bold'}  to={`tables/batch/${_id}`}>Timetable</Link></td>
                         </tr>
                     )
                 })}

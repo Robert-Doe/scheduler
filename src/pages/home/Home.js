@@ -6,6 +6,7 @@ import {getLecturer, getRandomClassroom, getRandomTime, intValue, pairSplit} fro
 import {SessionContext} from "../../App";
 import {Table} from "./Table";
 import {BatchTable} from "./BatchTable";
+import {Link} from "react-router-dom";
 
 
 function Home() {
@@ -15,8 +16,8 @@ function Home() {
     const [halls, setHalls] = useState([]);
     const [batches, setBatches] = useState([]);
     const [pairings, setPairings] = useState([]);
-    const {interim, setInterim} = useContext(SessionContext);
-    const [serversess,setServersess] = useState([]);
+    const {setInterim,serversess,setServersess,goneHome,setGoneHome} =useContext(SessionContext);
+
     useEffect(() => {
         fetch('http://localhost:9999/departments', {
             method: 'GET',
@@ -108,28 +109,33 @@ function Home() {
                 alert(err)
                 console.log(err);
             })
-        fetch('http://localhost:9999/sessions', {
-            method: 'GET',
-            mode: 'cors',
-            origin: 'http://localhost:3000/',
-            headers: {
-                "Access-Control-Allow-Origin": "*"
-            }
-        }).then(res => res.json())
-            .then(data => {
-                if (data) {
-                    setServersess(data)
-                    setInterim(data)
-                } else {
-                    setInterim([])
-                    setServersess([])
-                }
 
-            })
-            .catch(err => {
-                alert(err)
-                console.log(err);
-            })
+        if(!goneHome){
+            fetch('http://localhost:9999/sessions', {
+                method: 'GET',
+                mode: 'cors',
+                origin: 'http://localhost:3000/',
+                headers: {
+                    "Access-Control-Allow-Origin": "*"
+                }
+            }).then(res => res.json())
+                .then(data => {
+                    if (data) {
+                        setServersess(data)
+                        setInterim(data)
+                    } else {
+                        setInterim([])
+                        setServersess([])
+                    }
+
+                })
+                .catch(err => {
+                    alert(err)
+                    console.log(err);
+                })
+        }
+        setGoneHome(true);
+
 
     }, [])
 
@@ -138,10 +144,12 @@ function Home() {
 
     const onScheduleHandler = () => {
 
-        sessions = [...serversess];
+        sessions = [].concat(serversess);
         //setInterim([]);
         console.clear();
-        batches.forEach((batch) => {
+
+        batches.sort((a,b)=>(a.size-b.size)).forEach((batch) => {
+
             batch.pairings.forEach((pair) => {
                 let lecturer = getLecturer(pair)
                 let period = getRandomTime(intValue(pairSplit(pair, 2)), lecturer, batch._id, sessions)
@@ -164,16 +172,21 @@ function Home() {
         setInterim(displayable/*prev => prev.concat(displayable)*/);
     }
 
-    return (<>
+    return (<section>
             <HomeBody scheduler={onScheduleHandler} batches={batches} departments={departments} courses={courses}
                       halls={halls} lecturers={lecturers} pairings={pairings}/>
-            <Table id={'20523595'}/>
-            <BatchTable id={'CS1'}/>
+            <Link to={'tables/lecturer/1660717'}>Test</Link>
+            <Link to={'tables/batch/086-100-A'}>Test</Link>
+            <Link to={'batches'}>Batches</Link>
+
+            {/*<a href="http://localhost:3000/tables/lecturer/20523595">Test</a>*/}
+            <Table id={'1660717'}/>
+           {/* <BatchTable id={'CS1'}/>
             <BatchTable id={'CS2'}/>
             <BatchTable id={'CS3'}/>
             <BatchTable id={'CS4'}/>
-            <BatchTable id={'CS5'}/>
-        </>
+            <BatchTable id={'CS5'}/>*/}
+        </section>
     );
 }
 

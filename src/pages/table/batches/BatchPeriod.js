@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Period(props) {
+function BatchPeriod(props) {
 
     let {period}=props.session;
-
+    //console.log(props)
 
     let pi = (text) => {
         return Number.parseInt(text)
@@ -25,10 +25,10 @@ function Period(props) {
             <div className={"period m-0 "}>
                 <span className={'start'}>{props.session.classroom}</span>
                 <span className={'mid'}>{getCourse(props.session.pair_id)}</span>
-                <span className={'start'}>{props.session.batch_id}</span>
+                <span className={'start'}>{getLecturer(props.session.pair_id)}</span>
             </div>
         </div>
     )
 }
 {/*getLecturer(props.session.pair_id)*/}
-export default Period;
+export default BatchPeriod;

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Link} from "react-router-dom";
 
 
 function Departments() {
@@ -34,7 +35,7 @@ function Departments() {
         <section className={'container mt-5 py-5'}>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
+                    <li className="breadcrumb-item"><Link to="http://localhost:3000/">Home</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Departments</li>
                 </ol>
             </nav>

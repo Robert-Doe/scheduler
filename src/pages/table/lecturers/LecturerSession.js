@@ -8,14 +8,14 @@ import {Table} from "./Table";
 
 function LecturerSession() {
     let {id} = useParams();
-    if(!sessions.some((session)=>session.lecturer===id))
+   /* if(!sessions.some((session)=>session.lecturer===id))
     {
         return (
             <section className="container py-5">
                 <h1 className="display-5">No Lecturer with id: {id}</h1>
             </section>
         )
-    }
+    }*/
 
     return (
         <section className={'container-fluid mt-2 py-3'}>

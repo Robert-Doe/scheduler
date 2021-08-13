@@ -78,7 +78,8 @@ export function Table({id}) {
     const {interim}=useContext(SessionContext);
     return (
         <main className={'px-3'}>
-            <h2>Count=={interim.filter(x=>getLecturer(x.pair_id)===id).length}</h2>
+            <p className={'display-4'}>Timetable - Lecturer  {id}</p>
+           {/* <h2>Count=={interim.filter(x=>getLecturer(x.pair_id)===id).length}</h2>*/}
             <TimeBar/>
             <TableRow full_day={'Monday'} day_abbr={'Mon'} id={id}/>
             <TableRow full_day={'Tuesday'} day_abbr={'Tues'} id={id}/>

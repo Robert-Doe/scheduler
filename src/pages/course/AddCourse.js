@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {Link} from "react-router-dom";
 
 
 function AddCourse() {
@@ -93,8 +94,8 @@ function AddCourse() {
             <section className={'container px-5'}>
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/courses">Courses</a></li>
+                        <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                        <li className="breadcrumb-item"><Link to="/courses">Courses</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>

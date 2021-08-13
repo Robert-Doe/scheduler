@@ -1,4 +1,4 @@
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import React, {useEffect, useState} from 'react'
 
 function ViewBatch() {
@@ -49,8 +49,8 @@ function ViewBatch() {
             <section className={'container px-5'}>
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/lecturers">Lecturers</a></li>
+                        <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                        <li className="breadcrumb-item"><Link to="/lecturers">Lecturers</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">View</li>
                     </ol>
                 </nav>

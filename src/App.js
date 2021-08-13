@@ -44,10 +44,13 @@ export const SessionContext = createContext();
 
 function App() {
     const [interim, setInterim] = useState([]);
+    const [serversess,setServersess] = useState([]);
+    const [goneHome,setGoneHome] = useState(false);
 
     return (
-        <SessionContext.Provider value={{interim, setInterim}}>
+
             <Router>
+                <SessionContext.Provider value={{interim, setInterim,serversess,setServersess,goneHome,setGoneHome}}>
                 <Navbar/>
                 <Switch>
                     <Route path='/' exact component={Home}/>
@@ -94,17 +97,18 @@ function App() {
                     <Route path={'/tables/hall/:id'} component={HallSession}/>
                     <Route path={'/tables/lecturer/:id'} component={LecturerSession}/>
 
-                    <Route path={'/tables/batches'} component={BatchSession}/>
+                 {/*   <Route path={'/tables/batches'} component={BatchSession}/>
                     <Route path={'/tables/halls'} component={HallSession}/>
-                    <Route path={'/tables/lecturers'} component={LecturerSession}/>
+                    <Route path={'/tables/lecturers'} component={LecturerSession}/>*/}
 
                     {/*{Where I test the Scheduling Algorithms}*/}
                     <Route path={'/algorithm'} component={AlgorithmScheduler}/>
 
 
                 </Switch>
+                </SessionContext.Provider>
             </Router>
-            </SessionContext.Provider>
+
     );
 }
 

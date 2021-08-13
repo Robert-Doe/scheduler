@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Link} from "react-router-dom";
 
 
 function Courses() {
@@ -6,7 +7,7 @@ function Courses() {
     const viewCourseHandler = (e) => {
         const targetFile = e.target.parentNode;
         console.log(targetFile.childNodes[0].textContent);
-        window.location.href = `http://localhost:3001/courses/view/${targetFile.childNodes[0].textContent}`
+        window.location.href = `http://localhost:3000/courses/view/${targetFile.childNodes[0].textContent}`
     }
 
     const [courses, setCourses] = useState([]);
@@ -34,7 +35,7 @@ function Courses() {
         <section className={'container mt-5 py-5'}>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Courses</li>
                 </ol>
             </nav>
@@ -43,8 +44,8 @@ function Courses() {
                 <tr>
                     <th>#id</th>
                     <th>Name</th>
-                    <th>Course Code</th>
-                    <th>Department</th>
+                    <th>Dept Id</th>
+                    <th>Credit</th>
                 </tr>
                 </thead>
                 <tbody>

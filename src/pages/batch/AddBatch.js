@@ -140,8 +140,8 @@ function AddBatch() {
         <section className={'container mt-5 py-5'}>
             <nav aria-label="breadcrumb ">
                 <ol className="breadcrumb bg-light">
-                    <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
-                    <li className="breadcrumb-item"><a href="http://localhost:3000/batches">Batches</a></li>
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                    <li className="breadcrumb-item"><Link to="/batches">Batches</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Add</li>
                 </ol>
             </nav>

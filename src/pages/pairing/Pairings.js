@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Link} from "react-router-dom";
 
 
 function Pairings() {
@@ -71,7 +72,7 @@ function Pairings() {
         <section className={'container mt-5 py-5'}>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Pairings</li>
                 </ol>
             </nav>

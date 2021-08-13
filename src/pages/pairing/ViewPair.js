@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 
 function ViewPair(){
@@ -8,7 +8,7 @@ function ViewPair(){
         <section>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Pairs</li>
                 </ol>
             </nav>

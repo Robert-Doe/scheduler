@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {getCLS} from "web-vitals";
+import {Link} from "react-router-dom";
 
 
 export function DeptBatchCourses() {
@@ -205,8 +206,8 @@ export function DeptBatchCourses() {
             <section className={'container px-3'}>
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/departments">Departments</a></li>
+                        <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                        <li className="breadcrumb-item"><Link to="/departments">Departments</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>

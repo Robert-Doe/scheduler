@@ -156,6 +156,13 @@ svg path {
   color: white;
   font-weight: bold;
 }
+
+.pink{
+  background-color: pink;
+  color: black;
+  font-weight: bold;
+}
+
 .orange{
   background-color: orange;
   color: black;

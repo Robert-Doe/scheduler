@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {Link} from "react-router-dom";
 
 function AddSession() {
 
@@ -224,8 +225,8 @@ function AddSession() {
 
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/sessions">Sessions</a></li>
+                        <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                        <li className="breadcrumb-item"><Link to="/sessions">Sessions</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>

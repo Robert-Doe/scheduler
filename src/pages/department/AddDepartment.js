@@ -1,4 +1,5 @@
 import React, {useRef} from 'react';
+import {Link} from "react-router-dom";
 
 function AddDepartment() {
 
@@ -55,8 +56,8 @@ function AddDepartment() {
             <section className={'container px-5'}>
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/departments">Departments</a></li>
+                        <li className="breadcrumb-item"><Link  to="/">Home</Link></li>
+                        <li className="breadcrumb-item"><Link  to="/departments">Departments</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>
