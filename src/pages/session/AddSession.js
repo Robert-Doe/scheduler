@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Link} from "react-router-dom";
+import {ButtonNav} from "../../components/ButtonNav";
 
 function AddSession() {
 
@@ -230,11 +231,11 @@ function AddSession() {
                         <li className="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>
-
+                <ButtonNav root={'sessions'}/>
                 <form className={'px-5'} onSubmit={addSessionHandler}>
                     <div className={'row'}>
 
-                        <div className="col-md-4 form-group pt-3">
+                        <div className="col-md-4 form-group pt-2">
                             <label htmlFor="exampleFormControlSelect1">Select Instructor's Department</label>
                             <select className="form-control" id="exampleFormControlSelect1"
                                     onChange={lectDeptHandler} ref={lectDeptRef}>
@@ -244,7 +245,7 @@ function AddSession() {
                                 })}
                             </select>
                         </div>
-                        <div className="col-md-4 form-group pt-3">
+                        <div className="col-md-4 form-group pt-2">
                             <label htmlFor="exampleFormControlSelect1">Instructor</label>
                             <select className="form-control" id="exampleFormControlSelect1" ref={lecturerRef}
                                     onChange={lectHandler}>
@@ -255,7 +256,7 @@ function AddSession() {
                                 })}
                             </select>
                         </div>
-                        <div className="col-lg-4 form-group pt-3">
+                        <div className="col-lg-4 form-group pt-2">
                             <label htmlFor="exampleFormControlSelect1">Course</label>
                             <select className="form-control" id="exampleFormControlSelect1" ref={courseRef}>
                                 { pairings.map(pair=>{
@@ -268,7 +269,7 @@ function AddSession() {
 
 
                     <div className={'row'}>
-                        <div className="col-md-6 form-group pt-3">
+                        <div className="col-md-6 form-group pt-2">
                             <label htmlFor="exampleFormControlSelect1">Select Student's Department</label>
                             <select className="form-control" id="exampleFormControlSelect1"
                                 onChange={batchDeptHandler} ref={batchDeptRef}>
@@ -278,7 +279,7 @@ function AddSession() {
                                 })}
                             </select>
                         </div>
-                        <div className="col-md-6 form-group pt-3">
+                        <div className="col-md-6 form-group pt-2">
                             <label htmlFor="exampleFormControlSelect1">Select Year Batch</label>
                             <select className="form-control" id="exampleFormControlSelect1" ref={batchRef}>
                                 {batches.map(batch=>{
@@ -291,7 +292,7 @@ function AddSession() {
 
 
                     <div className={'row'}>
-                        <div className="col-lg-4 form-group pt-3">
+                        <div className="col-lg-4 form-group pt-2">
                             <label htmlFor="exampleFormControlSelect1">Select Day</label>
                             <select className="form-control" id="exampleFormControlSelect1" ref={dayRef}>
                                 <option>Mon</option>
@@ -301,7 +302,7 @@ function AddSession() {
                                 <option>Fri</option>
                             </select>
                         </div>
-                        <div className="col-lg-4 form-group pt-3">
+                        <div className="col-lg-4 form-group pt-2">
                             <label htmlFor="exampleFormControlSelect1">Select Period(Start)</label>
                             <select className="form-control" id="exampleFormControlSelect1" ref={periodRef}>
                                 <option>1</option>
@@ -316,7 +317,7 @@ function AddSession() {
                                 <option>10</option>
                             </select>
                         </div>
-                        <div className="col-lg-4 form-group pt-3">
+                        <div className="col-lg-4 form-group pt-2">
                             <label htmlFor="exampleFormControlSelect1">Select Duration</label>
                             <select className="form-control" id="exampleFormControlSelect1" ref={timeRef}>
                                 <option>1</option>
@@ -329,7 +330,7 @@ function AddSession() {
                     </div>
 
                     <div className="row">
-                        <div className="col-lg-6 form-group pt-3">
+                        <div className="col-lg-6 form-group pt-2">
                             <label htmlFor="exampleFormControlSelect1">Hall</label>
                             <select className="form-control" id="exampleFormControlSelect1" ref={hallRef}>
                                 <option>SF1</option>
@@ -339,16 +340,16 @@ function AddSession() {
                                 <option>SF5</option>
                             </select>
                         </div>
-                        <div className="col-lg-6 pt-3">
+                        <div className="col-lg-6 pt-2">
                             <label htmlFor="first_name" className={'text-danger text-bold'}>Status</label>
                             <input type="text" id={'first_name'} className="form-control" disabled ref={statusRef}
                                    placeholder="Feasible Session Placement"/>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-4 pt-3">
+                        <div className="col-lg-4 pt-2">
                             <div className="form-group">
-                                <input id={'add_lecturer'} className="btn btn-primary form-control" type={'submit'}
+                                <input id={'add_lecturer'} className="btn btn-warning form-control bg-theme-btn" type={'submit'}
                                        value={'Add Session'}/>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
+import {ButtonNav} from "../../components/ButtonNav";
 
 
 function Pairings() {
@@ -76,6 +77,7 @@ function Pairings() {
                     <li className="breadcrumb-item active" aria-current="page">Pairings</li>
                 </ol>
             </nav>
+            <ButtonNav root={'pairings'}/>
             <table className="table table-bordered" style={{borderRadius: '50px'}}>
                 <thead className={'table-dark'}>
                 <tr>

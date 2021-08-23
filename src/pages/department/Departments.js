@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
+import {ButtonNav} from "../../components/ButtonNav";
 
 
 function Departments() {
@@ -32,30 +33,35 @@ function Departments() {
 
 
     return (
-        <section className={'container mt-5 py-5'}>
+        <section className={'container mt-5'}>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to="http://localhost:3000/">Home</Link></li>
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Departments</li>
                 </ol>
             </nav>
 
-            <table className="table table-bordered" style={{borderRadius:'50px'}} >
+            <ButtonNav root={'departments'}/>
+            <table className="table table-bordered table-striped" style={{borderRadius:'50px'}} >
                 <thead className={'table-dark'}>
                 <tr>
                     <th>#id</th>
                     <th>Name</th>
                     <th>Abbr</th>
+                    <th>Lecturers' Schedule</th>
+                    <th>Students' Schedule</th>
                 </tr>
                 </thead>
                 <tbody>
                 {departmentList && departmentList.map((department) => {
                     const {_id, name, dept_abbr} = department;
                     return (
-                        <tr onClick={viewDepartmentHandler} key={_id}>
-                            <td>{_id}</td>
+                        <tr key={_id}>
+                            <td><Link to={`/departments/view/${_id}`}>{_id}</Link></td>
                             <td>{name}</td>
                             <td>{dept_abbr}</td>
+                            <td className={'d-flex justify-content-center'}><Link class={'badge badge-warning w-50 py-1 text-light font-weight-normal'} style={{borderRadius:'30px'}} to={`tables/lecturers/department/${_id}`}>Preview (L)</Link></td>
+                            <td><Link class={'badge badge-success w-50 py-1 text-light font-weight-normal'}  to={`tables/batches/department/${_id}`} style={{borderRadius:'30px'}}>Preview (S)</Link></td>
                         </tr>
                     )
                 })}

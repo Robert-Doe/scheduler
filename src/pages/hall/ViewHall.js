@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, useParams} from 'react-router-dom'
+import {ButtonNav} from "../../components/ButtonNav";
 
 function ViewHall(){
     let {id}=useParams()
@@ -12,6 +13,8 @@ function ViewHall(){
                     <li className="breadcrumb-item active" aria-current="page">View</li>
                 </ol>
             </nav>
+
+            <ButtonNav root={'halls'}/>
 
             <h2 className={'mx-5 text-dark'}>{id}</h2>
         </section>

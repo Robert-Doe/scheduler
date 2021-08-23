@@ -172,16 +172,16 @@ function Home() {
         setInterim(displayable/*prev => prev.concat(displayable)*/);
     }
 
-    return (<section>
+    return (<section className='secondary-lt'>
             <HomeBody scheduler={onScheduleHandler} batches={batches} departments={departments} courses={courses}
                       halls={halls} lecturers={lecturers} pairings={pairings}/>
-            <Link to={'tables/lecturer/1660717'}>Test</Link>
+        {/*    <Link to={'tables/lecturer/1660717'}>Test</Link>
             <Link to={'tables/batch/086-100-A'}>Test</Link>
-            <Link to={'batches'}>Batches</Link>
+            <Link to={'batches'}>Batches</Link>*/}
 
             {/*<a href="http://localhost:3000/tables/lecturer/20523595">Test</a>*/}
             <Table id={'1660717'}/>
-           {/* <BatchTable id={'CS1'}/>
+            {/* <BatchTable id={'CS1'}/>
             <BatchTable id={'CS2'}/>
             <BatchTable id={'CS3'}/>
             <BatchTable id={'CS4'}/>

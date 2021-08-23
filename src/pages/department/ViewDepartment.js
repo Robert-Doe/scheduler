@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
+import {ButtonNav} from "../../components/ButtonNav";
 
 function ViewDepartment() {
     let {id} = useParams();
@@ -54,6 +55,8 @@ function ViewDepartment() {
                     <li className="breadcrumb-item active" aria-current="page">View</li>
                 </ol>
             </nav>
+
+            <ButtonNav root={'courses'}/>
             <h2 className={'mx-5 text-dark'}>{id}</h2>
             <dl className={'dl-horizontal text-center'}>
                 <dt>Identity</dt>

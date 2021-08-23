@@ -1,5 +1,6 @@
 import React, {useRef} from 'react';
 import {Link} from "react-router-dom";
+import {ButtonNav} from "../../components/ButtonNav";
 
 function AddDepartment() {
 
@@ -61,6 +62,7 @@ function AddDepartment() {
                         <li className="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>
+                <ButtonNav root={'courses'}/>
                 <form className={'px-5'} onSubmit={addDepartmentHandler}>
                     <div className="row pt-3">
                         <div className="col-md-6">
@@ -89,7 +91,7 @@ function AddDepartment() {
 
                     <div className="row pt-5 d-flex justify-content-center">
                         <div className="form-group">
-                            <input id={'add_dept'} className="btn btn-warning form-control bg-theme" type={'submit'}
+                            <input id={'add_dept'} className="btn btn-warning form-control bg-theme-btn" type={'submit'}
                                    value={'Add Department'}/>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 import React, {useRef} from 'react';
 import {Link} from "react-router-dom";
+import {ButtonNav} from "../../components/ButtonNav";
 
 function AddHall() {
 
@@ -60,6 +61,7 @@ function AddHall() {
                         <li className="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>
+                <ButtonNav root={'halls'}/>
                 <form className={'px-5'} onSubmit={addHallHandler}>
                     <div className={'row'}>
                         <div className="col-lg-6 form-group pt-3">
@@ -95,8 +97,8 @@ function AddHall() {
 
                     <div className="row pt-3">
                         <div className="form-group">
-                            <input id={'add_hall'} className="btn btn-primary form-control" type={'submit'}
-                                   value={'Add Hall'}></input>
+                            <input id={'add_hall'} className="btn btn-primary form-control bg-theme-btn" type={'submit'}
+                                   value={'Add Hall'}/>
                         </div>
                     </div>
 

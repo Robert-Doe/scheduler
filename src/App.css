@@ -113,8 +113,10 @@ legend {
 }
 
 label {
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   margin-top: 10px;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 aside.nav-aside > ul {
@@ -128,11 +130,12 @@ aside.nav-aside > ul {
 
 aside.nav-aside > ul > li {
   margin-top: 15px;
-  background-color: orange /*#000011*/;
+  background-color: black /*#000011*/;
   color: #f8f7ff;
+  border: 4px solid orange;
   padding: 7px 15px;
   border-radius: 20px;
-  box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 10px 6px -6px orange;
 }
 
 .link {
@@ -150,6 +153,71 @@ svg path {
   font-weight: bold;
   border:1px solid #f5a700;
 }
+.bg-theme-btn{
+  background-color:black;
+  color:#f5a700;
+  border:3px solid #f5a700;
+  font-weight: bold;
+  width:200px;
+}
+
+.bg-success-btn{
+  background-color:white;
+  color: #06b100;
+  border:3px solid #06b100;
+  font-weight: bold;
+  width:200px;
+}
+.bg-success-btn svg path{
+  fill:#06b100;
+}
+.bg-success-btn:hover svg path{
+  fill:#fff;
+}
+.bg-warning-btn{
+  background-color:white;
+  color: #f5a700;
+  border:3px solid #f5a700;
+  font-weight: bold;
+  width:200px;
+}
+.bg-warning-btn svg path{
+  fill: #f5a700;
+}
+.bg-warning-btn:hover svg path{
+  fill:#fff;
+}
+
+.display-card div.card{
+  -webkit-box-shadow: 0 5px 4px -6px #777;
+  -moz-box-shadow: 0 5px 4px -6px #777;
+  box-shadow: 0 7px 4px -4px #777;
+}
+
+img{
+  filter: blur(0.9px);
+  opacity: 0.8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+theme-home-btn{
+  border:3px solid #f5a700;
+  font-weight: bold;
+  width:200px;
+  color:black;
+}
+
+
 
 .blue{
   background-color: blue;
@@ -176,6 +244,16 @@ svg path {
   background-color: yellow;
   color: black;
 }
+
+.secondary-lt{
+  background-color: #e4e4e8 !important;
+}
+
+.b-rad-35{
+  border-top-right-radius:35px;
+  border-bottom-right-radius:35px;
+}
+
 
 .fill-server path{
   fill:green;

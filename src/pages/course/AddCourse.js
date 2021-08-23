@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Link} from "react-router-dom";
+import {ButtonNav} from "../../components/ButtonNav";
 
 
 function AddCourse() {
@@ -99,6 +100,7 @@ function AddCourse() {
                         <li className="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>
+                <ButtonNav root={'courses'}/>
                 <form className={'px-5'} onSubmit={addCourseHandler}>
                     <div className="row">
                         <div className="col-lg-6 form-group pt-3">
@@ -132,7 +134,7 @@ function AddCourse() {
 
                     <div className="row pt-3">
                         <div className="form-group">
-                            <input id={'add_course'} className="btn btn-primary form-control" type={'submit'}
+                            <input id={'add_course'} className="btn btn-primary form-control bg-theme-btn" type={'submit'}
                                    value={'Add Course'}/>
                         </div>
                     </div>

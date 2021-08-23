@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {acceptCSV,getCurrentId,value,refEmpty} from "../../util/manipulator";
 import {Link} from "react-router-dom";
+import {ButtonNav} from "../../components/ButtonNav";
 function AddLecturer() {
 
     const deptRef = useRef(null)
@@ -81,6 +82,7 @@ function AddLecturer() {
                         <li className="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>
+                <ButtonNav root={'lecturers'}/>
                 <form className={'px-5'} onSubmit={addLecturerHandler}>
                     <div className="row">
                         <div className="col-lg-6 pt-3">
@@ -126,7 +128,7 @@ function AddLecturer() {
                     </div>
                     <div className="row pt-3 d-flex justify-content-center">
                         <div className="form-group">
-                            <input id={'add_lecturer'} className="btn btn-warning form-control bg-theme" type={'submit'}
+                            <input id={'add_lecturer'} className="btn btn-warning form-control bg-theme-btn" type={'submit'}
     value={'Add Lecturer'}/>
                         </div>
                     </div>

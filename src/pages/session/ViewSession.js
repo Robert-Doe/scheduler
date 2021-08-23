@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, useParams} from 'react-router-dom'
+import {ButtonNav} from "../../components/ButtonNav";
 
 function ViewSession(){
     let {id} = useParams();
@@ -12,6 +13,8 @@ function ViewSession(){
                     <li className="breadcrumb-item active" aria-current="page">View</li>
                 </ol>
             </nav>
+
+            <ButtonNav root={'sessions'}/>
 
             <h2 className={'mx-5 text-dark'}>{id}</h2>
 

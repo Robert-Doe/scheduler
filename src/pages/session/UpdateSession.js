@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, useParams} from 'react-router-dom';
+import {ButtonNav} from "../../components/ButtonNav";
 
 function UpdateSession(){
     let {id} = useParams();
@@ -13,7 +14,7 @@ function UpdateSession(){
                 </ol>
             </nav>
 
-
+            <ButtonNav root={'departments'}/>
             <h2 className={'mx-5 text-dark'}>{id}</h2>
         </section>
     )

@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Link} from "react-router-dom";
+import {ButtonNav} from "../../components/ButtonNav";
 
 function AddPair() {
     const lecturerRef = useRef();
@@ -131,7 +132,7 @@ function AddPair() {
                     </ol>
                 </nav>
 
-
+                <ButtonNav root={'pairings'}/>
                 <form className={'px-5'} onSubmit={addPairHandler}>
 
                     <div className={'row'}>
@@ -174,10 +175,10 @@ function AddPair() {
                                    placeholder="Feasible Session Placement" ref={responseRef}/>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-lg-4 pt-3">
-                            <div className="form-group">
-                                <input id={'add_lecturer'} className="btn btn-primary form-control" type={'submit'}
+                    <div className="w-100">
+                        <div className="d-flex justify-content-center pt-3">
+                            <div className="form-group ">
+                                <input id={'add_lecturer'} className="btn btn-warning form-control bg-theme-btn" type={'submit'}
                                        value={'Add Session'}/>
                             </div>
                         </div>

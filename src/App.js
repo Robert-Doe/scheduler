@@ -37,6 +37,8 @@ import LecturerSession from "./pages/table/lecturers/LecturerSession";
 import Settings from "./pages/settings/Settings";
 import {DeptBatchCourses} from "./pages/department/DeptBatchCourses";
 import AlgorithmScheduler from "./pages/algorithm/AlgorithmScheduler";
+import {DownloadLecturers} from "./pages/department/DownloadLecturers";
+import {DownloadBatches} from "./pages/department/DownloadBatches";
 
 
 
@@ -96,6 +98,10 @@ function App() {
                     <Route path={'/tables/batch/:id'} component={BatchSession}/>
                     <Route path={'/tables/hall/:id'} component={HallSession}/>
                     <Route path={'/tables/lecturer/:id'} component={LecturerSession}/>
+
+
+                    <Route path={'/tables/lecturers/department/:id'} component={DownloadLecturers}/>
+                    <Route path={'/tables/batches/department/:id'} component={DownloadBatches}/>
 
                  {/*   <Route path={'/tables/batches'} component={BatchSession}/>
                     <Route path={'/tables/halls'} component={HallSession}/>

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
+import {ButtonNav} from "../../components/ButtonNav";
 
 function ViewLecturer() {
 
@@ -58,6 +59,7 @@ function ViewLecturer() {
                         <li className="breadcrumb-item active" aria-current="page">View</li>
                     </ol>
                 </nav>
+                <ButtonNav root={'lecturers'}/>
                 <dl className={'dl-horizontal text-center'}>
                     <dt>Identity</dt>
                     <dd>{lecturer && `${id}`}</dd>

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
+import {ButtonNav} from "../../components/ButtonNav";
 
 
 function Courses() {
@@ -39,6 +40,7 @@ function Courses() {
                     <li className="breadcrumb-item active" aria-current="page">Courses</li>
                 </ol>
             </nav>
+            <ButtonNav root={'courses'}/>
             <table className="table table-bordered table-striped" style={{borderRadius: '50px'}}>
                 <thead className={'table-dark'}>
                 <tr>

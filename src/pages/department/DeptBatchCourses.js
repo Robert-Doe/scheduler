@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {getCLS} from "web-vitals";
 import {Link} from "react-router-dom";
+import {ButtonNav} from "../../components/ButtonNav";
 
 
 export function DeptBatchCourses() {
@@ -211,6 +212,7 @@ export function DeptBatchCourses() {
                         <li className="breadcrumb-item active" aria-current="page">Add</li>
                     </ol>
                 </nav>
+
                 <form className={'px-5'} onSubmit={addDeptBatchCourse}>
 
                     <div className={'row'}>

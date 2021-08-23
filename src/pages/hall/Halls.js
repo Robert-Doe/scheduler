@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {ButtonNav} from "../../components/ButtonNav";
 
 const viewHallHandler=(e)=>{
     const targetFile=e.target.parentNode;
@@ -18,6 +19,7 @@ function Halls(){
                     <li className="breadcrumb-item active" aria-current="page">Halls</li>
                 </ol>
             </nav>
+            <ButtonNav root={'halls'}/>
             <table className="table table-bordered" style={{borderRadius:'50px'}} >
                 <thead className={'table-dark'}>
                 <tr>

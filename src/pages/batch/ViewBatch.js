@@ -1,5 +1,6 @@
 import {Link, useParams} from 'react-router-dom'
 import React, {useEffect, useState} from 'react'
+import {ButtonNav} from "../../components/ButtonNav";
 
 function ViewBatch() {
     let {id} = useParams();
@@ -54,6 +55,7 @@ function ViewBatch() {
                         <li className="breadcrumb-item active" aria-current="page">View</li>
                     </ol>
                 </nav>
+                <ButtonNav root={'batches'}/>
                 <dl className={'dl-horizontal text-center'}>
                     <dt>Identity</dt>
                     <dd>{batch && `${id}`}</dd>

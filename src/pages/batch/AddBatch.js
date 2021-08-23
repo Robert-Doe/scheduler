@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Link} from "react-router-dom";
 import {BatchNavData} from "../../components/BatchNavData";
 import {acceptCSV,getCurrentId,value,refEmpty} from "../../util/manipulator";
+import {ButtonNav} from "../../components/ButtonNav";
 
 
 function AddBatch() {
@@ -160,7 +161,7 @@ function AddBatch() {
                     <div className="tab-pane fade show active" id="nav-days" role="tabpanel" aria-labelledby="nav-days-tab">
                         <section className="bg-admin">
 
-                            <aside className={'nav-aside'}>
+                           {/* <aside className={'nav-aside'}>
                                 <ul>
                                     {BatchNavData.map((item, index) => {
                                         return (
@@ -173,7 +174,8 @@ function AddBatch() {
                                         );
                                     })}
                                 </ul>
-                            </aside>
+                            </aside>*/}
+                            <ButtonNav root={'batches'}/>
 
                             <form className={'px-5'} onSubmit={addBatchHandler}>
 
@@ -234,7 +236,7 @@ function AddBatch() {
 
                                     <div className="row pt-3">
                                         <div className="form-group  d-flex justify-content-center">
-                                            <input id={'add_lecturer'} className="btn btn-warning form-control bg-theme" type={'submit'}
+                                            <input id={'add_lecturer'} className="btn btn-warning form-control bg-theme-btn" type={'submit'}
                                                    value={'Add Batch'}/>
                                         </div>
                                     </div>

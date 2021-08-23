@@ -6,6 +6,8 @@ import * as GiIcons from "react-icons/gi";
 import * as AiIcons from "react-icons/ai";
 import * as VsIcons from "react-icons/vsc";
 import * as FiIcons from 'react-icons/fi';
+import homeImage from './home_image.jpg';
+
 import Loader from './loader/Loader';
 import {SessionContext} from "../../App";
 import {Link} from "react-router-dom";
@@ -20,7 +22,7 @@ export function HomeBody({scheduler, batches, courses, departments, halls, lectu
                 <aside className={'col-md-4 dashboard-quantity-chart'}>
 
                     <section className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-6 display-card">
                             <div className="card green-border d-flex align-items-center">
                                 <span><SiIcons.SiGoogleclassroom className={'fill-header'}/></span><Link
                                 to={'halls'} className={'text-dark font-weight-bold'}>Classrooms</Link>
@@ -28,7 +30,7 @@ export function HomeBody({scheduler, batches, courses, departments, halls, lectu
                                                              style={{width: '17px'}}/>&nbsp;&nbsp;{halls.length}</p>
                             </div>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 display-card">
                             <div className="card blue-border d-flex align-items-center">
                                 <span className={'text-dark font-weight-bold'}><HiIcons.HiUserGroup
                                     className={'fill-header'}/></span><Link
@@ -40,7 +42,7 @@ export function HomeBody({scheduler, batches, courses, departments, halls, lectu
                             </div>
                         </div>
                     </section>
-                    <section className="row mt-4">
+                    <section className="row mt-2 display-card">
                         <div className="col-md-6">
                             <div className="card black-border d-flex align-items-center">
                                 <span className={'text-dark font-weight-bold'}> <GiIcons.GiTeacher
@@ -53,7 +55,7 @@ export function HomeBody({scheduler, batches, courses, departments, halls, lectu
                             </div>
 
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 display-card">
                             <div className="card red-border d-flex align-items-center">
                                 <span className={'text-dark font-weight-bold'}><AiIcons.AiTwotoneFolderOpen
                                     className={'fill-header'}/></span>
@@ -66,8 +68,8 @@ export function HomeBody({scheduler, batches, courses, departments, halls, lectu
                         </div>
                     </section>
 
-                    <section className="row mt-4">
-                        <div className="col-md-6">
+                    <section className="row mt-2">
+                        <div className="col-md-6 display-card">
                             <div className="card brown-border d-flex align-items-center">
                                 <span className={'text-dark font-weight-bold'}><AiIcons.AiOutlineBlock
                                     className={'fill-header'}/></span>
@@ -77,7 +79,7 @@ export function HomeBody({scheduler, batches, courses, departments, halls, lectu
                                     {pairings.length}</p>
                             </div>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 display-card">
                             <div className="card pink-border d-flex align-items-center">
                                 <span className={'text-dark font-weight-bold'}><FaIcons.FaChild
                                     className={'fill-header'}/></span>
@@ -90,8 +92,8 @@ export function HomeBody({scheduler, batches, courses, departments, halls, lectu
 
                     </section>
 
-                    <section className="row mt-4">
-                        <div className="col-md-6">
+                    <section className="row mt-2">
+                        <div className="col-md-12 display-card">
                             <div className="card grey-border d-flex align-items-center">
                         <span className={'text-dark font-weight-bold'}><AiIcons.AiOutlineSchedule
                             className={'fill-header'}/></span>
@@ -107,25 +109,29 @@ export function HomeBody({scheduler, batches, courses, departments, halls, lectu
                 </aside>
                 <main className={'col-md-8'}>
                     <section className={'row'}>
-                        <div className="col-md-6" >
-                            {/* <PieChart className={'schedule-percentage'}
+                        <article className={'offset-md-2 col-md-10 b-rad-35'}>
+                            <div className="card b-rad-35" >
+                                {/* <PieChart className={'schedule-percentage'}
                               data={[
                                   { title: 'Scheduled', value: 1500, color: '#33FF05' },
                                   { title: 'Unscheduled', value: 50, color: '#FF0000' },
                               ]}
                               label={({ dataEntry }) => `${dataEntry.title} (${dataEntry.percentage.toFixed(2)})`}
                     />*/}
-                            <button className={'btn orange mt-3 mx-3 font-weight-bold'} onClick={scheduler}>
-                                <AiIcons.AiOutlineReload/>&nbsp;Schedule
-                            </button>
-                            <button className={'btn green mt-3 mx-3 font-weight-bold'}>
-                                <VsIcons.VscCloudUpload/>&nbsp;Upload
-                            </button>
 
-                        </div>
-                        <div className="col-md-3">
+                                <img src={homeImage} className={'w-100  h-75 b-rad-35'}/>
+                                <div className="d-flex justify-content-between">
+                                    <button className={'btn btn-success bg-success-btn mt-3 mx-3 font-weight-bold'} onClick={scheduler}>
+                                        <AiIcons.AiOutlineReload/>&nbsp;Schedule
+                                    </button>
+                                    <button className={'btn btn-warning bg-warning-btn mt-3 mx-3 font-weight-bold'}>
+                                        <VsIcons.VscCloudUpload/>&nbsp;Upload
+                                    </button>
+                                </div>
 
-                        </div>
+                            </div>
+                        </article>
+
                     </section>
                 </main>
             </div>
