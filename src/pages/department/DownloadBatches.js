@@ -6,9 +6,12 @@ import {BatchTable} from "./BatchTable";
 export function DownloadBatches(){
 
     function printDiv() {
-        var divContents = document.getElementById("document")
+        var headers=document.getElementsByTagName('head')[0];
+        var divContents = document.getElementById("tables")
         var a = window.open('', '', '');
-        a.document.write(document.children[0].innerHTML);
+        a.document.write(headers.innerHTML+divContents.innerHTML);
+        console.log(headers);
+        //a.document.write(document.children[0].innerHTML);
         a.print();
         a.document.close();
     }
@@ -37,13 +40,14 @@ export function DownloadBatches(){
          
 
     return(
-        <section className="container-fluid">
+        <section className="container-fluid" id={'tables'}>
             <button onClick={printDiv}>Print Me</button>
             {
                 batches.map((batch)=>{
                    return( <>
+                       \<br/><br/><br/>
                        <BatchTable id={batch._id}/>
-                       <br/><br/><br/><br/><br/><br/><br/>
+                       <br/><br/><br/><br/><br/><br/>
                    </>)
                 })
             }

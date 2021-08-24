@@ -80,7 +80,7 @@ export function BatchTable({id}) {
     //console.log('Batch Table', interim)
     return (
         <main className={'px-3'}>
-            <h2>Count=={interim.filter(x=>x.batch_id===id).length}</h2>
+            <p className={'display-4 text-center'}>Timetable of Class -- {id}</p>
             <TimeBar/>
             <TableRow full_day={'Monday'} day_abbr={'Mon'} id={id}/>
             <TableRow full_day={'Tuesday'} day_abbr={'Tues'} id={id}/>
