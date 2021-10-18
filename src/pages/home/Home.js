@@ -4,111 +4,16 @@ import classrooms from "../algorithm/classrooms";
 //import batches from "../algorithm/batches";
 import {getLecturer, getRandomClassroom, getRandomTime, intValue, pairSplit} from "./utils";
 import {SessionContext} from "../../App";
-import {Table} from "./Table";
-import {BatchTable} from "./BatchTable";
+import {Table} from "../table/Table";
+import {BatchTable} from "../table/BatchTable";
 import {Link} from "react-router-dom";
 
 
 function Home() {
-    const [departments, setDepartments] = useState([]);
-    const [lecturers, setLecturers] = useState([]);
-    const [courses, setCourses] = useState([]);
-    const [halls, setHalls] = useState([]);
-    const [batches, setBatches] = useState([]);
-    const [pairings, setPairings] = useState([]);
-    const {setInterim,serversess,setServersess,goneHome,setGoneHome} =useContext(SessionContext);
+
+    const {setInterim,serversess,setServersess,goneHome,setGoneHome,halls,pairings,departments,batches,lecturers,courses} =useContext(SessionContext);
 
     useEffect(() => {
-        fetch('http://localhost:9999/departments', {
-            method: 'GET',
-            mode: 'cors',
-            origin: 'http://localhost:3000/',
-            headers: {
-                "Access-Control-Allow-Origin": "*"
-            }
-        }).then(res => res.json())
-            .then(data => {
-                setDepartments(data)
-            })
-            .catch(err => {
-                alert(err)
-                console.log(err);
-            })
-        fetch('http://localhost:9999/lecturers', {
-            method: 'GET',
-            mode: 'cors',
-            origin: 'http://localhost:3000/',
-            headers: {
-                "Access-Control-Allow-Origin": "*"
-            }
-        }).then(res => res.json())
-            .then(data => {
-                setLecturers(data)
-            })
-            .catch(err => {
-                alert(err)
-                console.log(err);
-            })
-        fetch('http://localhost:9999/halls', {
-            method: 'GET',
-            mode: 'cors',
-            origin: 'http://localhost:3000/',
-            headers: {
-                "Access-Control-Allow-Origin": "*"
-            }
-        }).then(res => res.json())
-            .then(data => {
-                setHalls(data)
-            })
-            .catch(err => {
-                alert(err)
-                console.log(err);
-            })
-        fetch('http://localhost:9999/batches', {
-            method: 'GET',
-            mode: 'cors',
-            origin: 'http://localhost:3000/',
-            headers: {
-                "Access-Control-Allow-Origin": "*"
-            }
-        }).then(res => res.json())
-            .then(data => {
-                setBatches(data)
-            })
-            .catch(err => {
-                alert(err)
-                console.log(err);
-            })
-        fetch('http://localhost:9999/courses', {
-            method: 'GET',
-            mode: 'cors',
-            origin: 'http://localhost:3000/',
-            headers: {
-                "Access-Control-Allow-Origin": "*"
-            }
-        }).then(res => res.json())
-            .then(data => {
-                setCourses(data)
-            })
-            .catch(err => {
-                alert(err)
-                console.log(err);
-            })
-        fetch('http://localhost:9999/pairings', {
-            method: 'GET',
-            mode: 'cors',
-            origin: 'http://localhost:3000/',
-            headers: {
-                "Access-Control-Allow-Origin": "*"
-            }
-        }).then(res => res.json())
-            .then(data => {
-                setPairings(data)
-            })
-            .catch(err => {
-                alert(err)
-                console.log(err);
-            })
 
         if(!goneHome){
             fetch('http://localhost:9999/sessions', {
@@ -136,7 +41,6 @@ function Home() {
         }
         setGoneHome(true);
 
-
     }, [])
 
 
@@ -158,7 +62,7 @@ function Home() {
                     period: period,
                     pair_id: pair,
                     batch_id: batch._id,
-                    classroom: classroom
+                    hall_id: classroom
                 };
                 if (newSession.period && period !== "Mon-00-00") {
                     sessions.push(newSession);
@@ -172,17 +76,19 @@ function Home() {
         setInterim(displayable/*prev => prev.concat(displayable)*/);
     }
 
-    return (<section className='secondary-lt'>
+    return (<section>
             <HomeBody scheduler={onScheduleHandler} batches={batches} departments={departments} courses={courses}
                       halls={halls} lecturers={lecturers} pairings={pairings}/>
         {/*    <Link to={'tables/lecturer/1660717'}>Test</Link>
             <Link to={'tables/batch/086-100-A'}>Test</Link>
             <Link to={'batches'}>Batches</Link>*/}
-
+            <br/><br/>
             {/*<a href="http://localhost:3000/tables/lecturer/20523595">Test</a>*/}
-            <Table id={'1660717'}/>
-            {/* <BatchTable id={'CS1'}/>
-            <BatchTable id={'CS2'}/>
+
+           <Table id={'0860011'}/>
+            <BatchTable id={'086-100-A'}/>
+
+            {/* <BatchTable id={'CS2'}/>
             <BatchTable id={'CS3'}/>
             <BatchTable id={'CS4'}/>
             <BatchTable id={'CS5'}/>*/}

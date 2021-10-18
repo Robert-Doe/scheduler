@@ -10,11 +10,12 @@ import {SessionContext} from "../../App";
 const getLecturer = (pairId) => pairId.split('-')[0];
 
 function TableRow({full_day,day_abbr,id}){
-    const {interim} = useContext(SessionContext);
+    const {interim}=useContext(SessionContext);
 
     let cellInterval = (active, previous) => {
         return Math.abs(pi(active[1]) - pi(previous[2]))
     }
+
 
     let pi = (text) => {
         return Number.parseInt(text)
@@ -52,16 +53,16 @@ function TableRow({full_day,day_abbr,id}){
                         if (difference > 0) {
                             return (<>
                                 <BackFill space={difference} key={Math.floor('b'+Math.random()*1000000)}/>
-                                <Period session={object} key={'a'+Math.random()*100}/>
+                                < Period session={object} key={'a'+Math.random()*100}/>
                             </>)
                         } else {
-                            return (<Period session={object} key={'c'+Math.random()}/>)
+                            return (< Period session={object} key={'c'+Math.random()}/>)
                         }
                     } else {
                         const difference=Math.abs(1-pi(session[1]))
                         return (<>
                             {difference>0?<BackFill space={difference}/>:null}
-                                <Period session={object}  key={'x'+Math.random()*400}/>
+                                <Period session={object} />
                             </>
                         )
                     }
@@ -78,12 +79,11 @@ export function Table({id}) {
 
     const getLecturerName=()=>{
         let teacher=lecturers.filter(tutor=>tutor._id===id)[0];
-        return teacher?`${teacher.fname} ${teacher.sname}` :'Antelope'
+        return teacher?`${teacher.fname} ${teacher.lname}` :'Loading..'
     }
-
     return (
-        <main className={'px-3'} style={{backgroundColor:'white'}}>
-            <p className={'display-4'}>Timetable - Lecturer  {getLecturerName()}</p>
+        <main className={'px-3 my-3'} style={{backgroundColor:'white'}}>
+            <h2 className={'text-center'}>{getLecturerName()}, PhD.</h2>
            {/* <h2>Count=={interim.filter(x=>getLecturer(x.pair_id)===id).length}</h2>*/}
             <TimeBar/>
             <TableRow full_day={'Monday'} day_abbr={'Mon'} id={id}/>

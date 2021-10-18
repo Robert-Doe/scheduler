@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {ButtonNav} from "../../components/ButtonNav";
+import {SessionContext} from "../../App";
 
 
 function Courses() {
@@ -12,6 +13,11 @@ function Courses() {
     }
 
     const [courses, setCourses] = useState([]);
+    const {departments} =useContext(SessionContext);
+    const getDepartment=(deptId)=>{
+        const found=departments.filter(dept=>dept._id===deptId)[0];
+        return found?found.name:'Verify';
+    }
 
     useEffect(() => {
         fetch('http://localhost:9999/courses', {
@@ -31,6 +37,8 @@ function Courses() {
                 console.log(err);
             })
     }, [])
+
+
 
     return (
         <section className={'container mt-5 py-5'}>
@@ -58,7 +66,7 @@ function Courses() {
                         <tr onClick={viewCourseHandler} key={Math.random()}>
                             <td>{_id}</td>
                             <td>{name}</td>
-                            <td>{dept_id}</td>
+                            <td>{getDepartment(dept_id)}</td>
                             <td>{credit}</td>
                         </tr>
                     )

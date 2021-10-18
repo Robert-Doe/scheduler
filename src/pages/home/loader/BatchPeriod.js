@@ -3,6 +3,7 @@ import React from 'react';
 function BatchPeriod(props) {
 
     let {period}=props.session;
+    let {lecturer}=props;
     console.log(props)
 
     let pi = (text) => {
@@ -15,7 +16,6 @@ function BatchPeriod(props) {
             end: pi(period.split('-')[2])
         }
     }
-    const getLecturer = (pairId) => pairId.split('-')[0]
     const getCourse = (pairId) => pairId.split('-')[1]
     const background=['blue','orange','green','yellow']
     const getDuration=()=>Math.abs(periodObject().end-periodObject().start)
@@ -25,7 +25,7 @@ function BatchPeriod(props) {
             <div className={"period m-0 "}>
                 <span className={'start'}>{props.session.hall_id}</span>
                 <span className={'mid'}>{getCourse(props.session.pair_id)}</span>
-                <span className={'start'}>{getLecturer(props.session.pair_id)}</span>
+                <span className={'start'}>{lecturer}</span>
             </div>
         </div>
     )

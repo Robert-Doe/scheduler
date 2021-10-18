@@ -1,7 +1,8 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');*/
 @import url('../node_modules/bootstrap/dist/css/bootstrap.min.css');
-/*@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap');*/
-/*@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 
 * {
   box-sizing: border-box;
@@ -119,11 +120,12 @@ label {
   font-size: 12px;
 }
 
+
 aside.nav-aside > ul {
   display: flex;
   flex-direction: column;
   height: 30%;
-  position: absolute;
+  position: fixed;
   right: 10px;
   flex-grow: 1;
 }
@@ -187,12 +189,14 @@ svg path {
 .bg-warning-btn:hover svg path{
   fill:#fff;
 }
+/*
 
 .display-card div.card{
   -webkit-box-shadow: 0 5px 4px -6px #777;
   -moz-box-shadow: 0 5px 4px -6px #777;
   box-shadow: 0 7px 4px -4px #777;
 }
+*/
 
 img{
   filter: blur(0.9px);
@@ -270,6 +274,7 @@ theme-home-btn{
 .grey-border{
   border-bottom:5px solid grey;
 }
+
 .orangered-border{
   border-bottom:5px solid red;
 }
@@ -327,6 +332,54 @@ text{
   -webkit-animation: rotation 9s infinite linear;
 }
 
+.font-darkblue{
+  font-family: "Open Sans",Arial,Helvetica,sans-serif;
+}
+.Satisfy
+{
+  font-family: Satisfy;
+  font-style: normal;
+}
+p{
+  font-size: smaller;
+  letter-spacing: 1px;
+}
+
+.alert-alpha {
+  background-color: #e6f4fe;
+  border-left-color: rgba(0,93,232,.56);
+}
+
+.alert {
+  border: none;
+  border-left: solid 4px;
+  border-radius: 4px;
+  font-size: smaller;
+/*  font-size: 14px;*/
+  line-height: 24px;
+  letter-spacing: .1px;
+  color: #110343;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align:center;
+}
+
+
+.align-items-start {
+  -webkit-box-align: start!important;
+  -webkit-align-items: flex-start!important;
+  -ms-flex-align: start!important;
+  align-items: flex-start!important;
+}
+
+th,td{
+  text-align: center;
+}
+
+
+
+
 /*.schedule-percentage:hover svg{
   animation-name: rotate;
   animation-duration: 0.7s;
@@ -348,5 +401,7 @@ text{
     -webkit-transform: rotate(359deg);
   }
 }
+
+
 
 

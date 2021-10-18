@@ -1,19 +1,28 @@
 import React,{useContext} from 'react';
-import Days from "../algorithm/Days";
-import BackFill from "../algorithm/BackFill";
-import Period from "./Period";
+import Days from "../../algorithm/Days";
+import BackFill from "../../algorithm/BackFill";
+import BatchPeriod from "./BatchPeriod";
 //import sessions from "../../../data/sessions";
-import {TimeBar} from "../algorithm/TimeBar";
-import {SessionContext} from "../../App";
+import {TimeBar} from "../../algorithm/TimeBar";
+import {SessionContext} from "../../../App";
 
 
-const getLecturer = (pairId) => pairId.split('-')[0];
+//const getLecturer = (pairId) => pairId.split('-')[0];
+
 
 function TableRow({full_day,day_abbr,id}){
-    const {interim} = useContext(SessionContext);
-
+    const {interim,lecturers}=useContext(SessionContext);
+    console.log("Batch Table Row",interim)
     let cellInterval = (active, previous) => {
         return Math.abs(pi(active[1]) - pi(previous[2]))
+    }
+
+    const getLecturerAbbrev=(pairId)=>{
+           let lecturerId=pairId.split('-')[0]
+       let tutor = lecturers.filter(teacher=>teacher._id===lecturerId)[0]
+        console.log("Test Data",tutor)
+           return tutor?`${tutor.abbr}`:null
+
     }
 
     let pi = (text) => {
@@ -29,9 +38,11 @@ function TableRow({full_day,day_abbr,id}){
         }
     }
 
-    let day = (day, id,schedules=[]) => {
-        const sess = schedules.filter((session) => session.period && periodObject(session.period).day === day && getLecturer(session.pair_id) === id)
-        console.log(sess)
+
+
+    let day = (day, id,schedules/*=[]*/) => {
+        const sess = schedules.filter((session) => session.period && periodObject(session.period).day === day && session.batch_id === id)
+        console.log('Batch Table Day',sess,schedules)
         return (sess)
     }
 
@@ -52,16 +63,16 @@ function TableRow({full_day,day_abbr,id}){
                         if (difference > 0) {
                             return (<>
                                 <BackFill space={difference} key={Math.floor('b'+Math.random()*1000000)}/>
-                                <Period session={object} key={'a'+Math.random()*100}/>
+                                <BatchPeriod session={object} lecturer={getLecturerAbbrev(object.pair_id)} key={'a'+Math.random()*100}/>
                             </>)
                         } else {
-                            return (<Period session={object} key={'c'+Math.random()}/>)
+                            return (<BatchPeriod session={object} lecturer={getLecturerAbbrev(object.pair_id)} key={'c'+Math.random()}/>)
                         }
                     } else {
                         const difference=Math.abs(1-pi(session[1]))
                         return (<>
                             {difference>0?<BackFill space={difference}/>:null}
-                                <Period session={object}  key={'x'+Math.random()*400}/>
+                                <BatchPeriod session={object} lecturer={getLecturerAbbrev(object.pair_id)}/>
                             </>
                         )
                     }
@@ -73,18 +84,18 @@ function TableRow({full_day,day_abbr,id}){
 }
 
 
-export function Table({id}) {
-    const {lecturers}=useContext(SessionContext);
+export function BatchTable({id}) {
+    const {batches}=useContext(SessionContext);
+    //console.log('Batch Table', interim)
 
-    const getLecturerName=()=>{
-        let teacher=lecturers.filter(tutor=>tutor._id===id)[0];
-        return teacher?`${teacher.fname} ${teacher.sname}` :'Antelope'
+    const getBatchName=()=>{
+        let classObject=batches.filter(batch=>batch._id===id)[0];
+        return classObject?`${classObject.name}` :'Antelope'
     }
 
     return (
-        <main className={'px-3'} style={{backgroundColor:'white'}}>
-            <p className={'display-4'}>Timetable - Lecturer  {getLecturerName()}</p>
-           {/* <h2>Count=={interim.filter(x=>getLecturer(x.pair_id)===id).length}</h2>*/}
+        <main className={'px-3'}>
+            <h2 className={'display-4'}>Course Schedule - {getBatchName()}</h2>
             <TimeBar/>
             <TableRow full_day={'Monday'} day_abbr={'Mon'} id={id}/>
             <TableRow full_day={'Tuesday'} day_abbr={'Tues'} id={id}/>

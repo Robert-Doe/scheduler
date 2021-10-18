@@ -1,6 +1,7 @@
-import React, {useEffect,useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {ButtonNav} from "../../components/ButtonNav";
+import {SessionContext} from "../../App";
 
 
 /*const viewSessionHandler=(e)=>{
@@ -13,6 +14,16 @@ import {ButtonNav} from "../../components/ButtonNav";
 function Sessions(){
 
     const [sessions,setSessions]=useState([])
+    const {interim,lecturers,courses}=useContext(SessionContext);
+
+    const getLecturerName=(tutorId)=>{
+        let tutor=lecturers.filter(tutor=>tutor._id===tutorId)[0]
+        return tutor?`${tutor.fname} ${tutor.lname}`:'Verify';
+    }
+    const getCourseName=(courseId)=>{
+        let course=courses.filter(course=>course._id===courseId)[0]
+        return course?`${course.name}`:'Verify';
+    }
 
     useEffect(() => {
         fetch('http://localhost:9999/sessions', {
@@ -33,8 +44,6 @@ function Sessions(){
             })
     }, [])
 
-
-
     return(
         <section className={'container mt-5 py-5'}>
             <nav aria-label="breadcrumb">
@@ -48,22 +57,23 @@ function Sessions(){
             <table className="table table-bordered" style={{borderRadius:'50px'}} >
                 <thead className={'table-dark'}>
                 <tr>
-                    <th>#id</th>
+                    <th>Class</th>
                     <th>Course Code</th>
                     <th>Lecturer</th>
-                    <th>Halls</th>
                     <th>Period</th>
+                    <th>Classroom</th>
                 </tr>
                 </thead>
                 <tbody>
                 {
-                    sessions.map((session)=>{
+                    interim.map((session)=>{
+
                         return(<tr /*onClick={viewSessionHandler}*/>
-                            <td>fad23fa78829abc34e</td>
-                            <td>CSM256</td>
-                            <td>Robert Doe</td>
-                            <td>SF1 SF3</td>
-                            <td>M-3-5</td>
+                            <td>{session.batch_id}</td>
+                            <td>{getCourseName(session.pair_id.split('-')[1])}</td>
+                            <td>{getLecturerName(session.pair_id.split('-')[0])}</td>
+                            <td>{session.period}</td>
+                            <td>{session.hall_id}</td>
                         </tr>)
                     })
                 }

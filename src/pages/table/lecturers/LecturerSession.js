@@ -1,8 +1,7 @@
 import React from 'react';
-import {useParams} from 'react-router-dom'
-import sessions from "../../../data/sessions";
+import {useParams,Link} from 'react-router-dom'
 //import {TableOld} from "../batches/TableOld";
-import {Table} from "./Table";
+import {Table} from "../Table";
 
 
 
@@ -22,8 +21,8 @@ function LecturerSession() {
             <div className="container">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/">Home</a></li>
-                        <li className="breadcrumb-item"><a href="http://localhost:3000/batches">Batches</a></li>
+                        <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                        <li className="breadcrumb-item"><Link to="/lecturers">Lecturers</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">View</li>
                     </ol>
                 </nav>

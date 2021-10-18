@@ -1,7 +1,7 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import * as RiIcons from 'react-icons/ri';
+import * as BsIcons from 'react-icons/bs';
 import * as HiIcons from 'react-icons/hi';
 import * as GiIcons from 'react-icons/gi';
 import * as SiIcons from 'react-icons/si'
@@ -52,14 +52,14 @@ export const SidebarData = [
   },
   {
     title: 'Schedule',
-    path: '/schedules',
+    path: '/sessions',
     icon: <AiIcons.AiOutlineSchedule/>,
     cName: 'nav-text'
   } ,
   {
-    title: 'Settings',
-    path: '/settings',
-    icon: <RiIcons.RiAdminFill /> ,
+    title: 'Register Courses',
+    path: '/departments/batches/courses',
+    icon: <BsIcons.BsFillBookmarksFill /> ,
     cName: 'nav-text'
   }
 ];

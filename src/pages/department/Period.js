@@ -23,7 +23,7 @@ function Period(props) {
         <div className={`col-${getDuration()}   py-3 px-1 m-0 ${background[Math.floor(Math.random()*4)]}`}
              style={{border: '1px solid black'}}>
             <div className={"period m-0 "}>
-                <span className={'start'}>{props.session.classroom}</span>
+                <span className={'start'}>{props.session.hall_id}</span>
                 <span className={'mid'}>{getCourse(props.session.pair_id)}</span>
                 <span className={'start'}>{props.session.batch_id}</span>
             </div>

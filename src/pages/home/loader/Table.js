@@ -1,10 +1,10 @@
 import React,{useContext} from 'react';
-import Days from "../algorithm/Days";
-import BackFill from "../algorithm/BackFill";
+import Days from "../../algorithm/Days";
+import BackFill from "../../algorithm/BackFill";
 import Period from "./Period";
 //import sessions from "../../../data/sessions";
-import {TimeBar} from "../algorithm/TimeBar";
-import {SessionContext} from "../../App";
+import {TimeBar} from "../../algorithm/TimeBar";
+import {SessionContext} from "../../../App";
 
 
 const getLecturer = (pairId) => pairId.split('-')[0];
@@ -75,10 +75,15 @@ function TableRow({full_day,day_abbr,id}){
 
 
 export function Table({id}) {
-    const {interim}=useContext(SessionContext);
+    const {lecturers}=useContext(SessionContext);
+
+    const getLecturerName=()=>{
+        let teacher=lecturers.filter(tutor=>tutor._id===id)[0];
+        return teacher?`${teacher.fname} ${teacher.lname}` :'Antelope'
+    }
     return (
         <main className={'px-3'} style={{backgroundColor:'white'}}>
-            <p className={'display-4'}>Timetable - Lecturer  {id}</p>
+            <p className={'display-4'}>Lesson Schedule - {getLecturerName()}</p>
            {/* <h2>Count=={interim.filter(x=>getLecturer(x.pair_id)===id).length}</h2>*/}
             <TimeBar/>
             <TableRow full_day={'Monday'} day_abbr={'Mon'} id={id}/>

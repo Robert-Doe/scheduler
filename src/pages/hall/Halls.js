@@ -1,16 +1,36 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {ButtonNav} from "../../components/ButtonNav";
 
-const viewHallHandler=(e)=>{
-    const targetFile=e.target.parentNode;
-    console.log(targetFile.childNodes[0].textContent);
-    window.location.href = `http://localhost:3000/halls/view/${targetFile.childNodes[0].textContent}`
-
-}
-
 
 function Halls(){
+
+    const [halls,setHalls]=useState([]);
+
+    const viewHallHandler=(e)=>{
+        const targetFile=e.target.parentNode;
+        console.log(targetFile.childNodes[0].textContent);
+        window.location.href = `http://localhost:3000/halls/view/${targetFile.childNodes[0].textContent}`
+    }
+    useEffect(() => {
+        fetch('http://localhost:9999/halls', {
+            method: 'GET',
+            mode: 'cors',
+            origin: 'http://localhost:3000/',
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json"
+            }
+        }).then(res => res.json())
+            .then(data => {
+                setHalls(data)
+            })
+            .catch(err => {
+                alert(err)
+                console.log(err);
+            })
+    }, [])
+
     return(
         <section className={'container mt-5 py-5'}>
             <nav aria-label="breadcrumb">
@@ -23,19 +43,23 @@ function Halls(){
             <table className="table table-bordered" style={{borderRadius:'50px'}} >
                 <thead className={'table-dark'}>
                 <tr>
-                    <th>#id</th>
                     <th>Name</th>
+                    <th>Location</th>
                     <th>Size</th>
                     <th>Type</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td onClick={viewHallHandler}>fad23fa78829abc34e</td>
-                    <td>SF9</td>
-                    <td>400</td>
-                    <td>Regular</td>
-                </tr>
+                {
+                    halls.map((hall)=> {
+                        return(<tr key={Math.random()*1000}>
+                            <td>{hall._id}</td>
+                            <td>{hall.location}</td>
+                            <td>{hall.size}</td>
+                            <td>{hall.type}</td>
+                        </tr>)
+                    })
+                }
                 </tbody>
             </table>
         </section>

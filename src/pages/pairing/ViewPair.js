@@ -13,7 +13,6 @@ function ViewPair(){
                     <li className="breadcrumb-item active" aria-current="page">Pairs</li>
                 </ol>
             </nav>
-
             <ButtonNav root={'pairings'}/>
             <h2 className={'mx-5 text-dark'}>{id}</h2>
         </section>

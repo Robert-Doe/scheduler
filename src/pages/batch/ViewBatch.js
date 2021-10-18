@@ -51,7 +51,7 @@ function ViewBatch() {
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                        <li className="breadcrumb-item"><Link to="/lecturers">Lecturers</Link></li>
+                        <li className="breadcrumb-item"><Link to="/batches">Batches</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">View</li>
                     </ol>
                 </nav>

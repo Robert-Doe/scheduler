@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link, useParams} from 'react-router-dom'
 //import sessions from "../../../data/sessions";
-import {BatchTable} from "./BatchTable";
-import {Table} from "../../home/Table";
+import {BatchTable} from "../BatchTable";
 
 
 function BatchSession() {

@@ -1,4 +1,4 @@
-import React,{useState,createContext} from 'react';
+import React,{useState,createContext,useEffect} from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -48,11 +48,111 @@ function App() {
     const [interim, setInterim] = useState([]);
     const [serversess,setServersess] = useState([]);
     const [goneHome,setGoneHome] = useState(false);
+    const [departments, setDepartments] = useState([]);
+    const [lecturers, setLecturers] = useState([]);
+    const [courses, setCourses] = useState([]);
+    const [halls, setHalls] = useState([]);
+    const [batches, setBatches] = useState([]);
+    const [pairings, setPairings] = useState([]);
+
+    useEffect(()=>{
+        fetch('http://localhost:9999/departments', {
+            method: 'GET',
+            mode: 'cors',
+            origin: 'http://localhost:3000/',
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
+        }).then(res => res.json())
+            .then(data => {
+                setDepartments(data)
+            })
+            .catch(err => {
+                alert(err)
+                console.log(err);
+            })
+        fetch('http://localhost:9999/lecturers', {
+            method: 'GET',
+            mode: 'cors',
+            origin: 'http://localhost:3000/',
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
+        }).then(res => res.json())
+            .then(data => {
+                setLecturers(data)
+            })
+            .catch(err => {
+                alert(err)
+                console.log(err);
+            })
+        fetch('http://localhost:9999/halls', {
+            method: 'GET',
+            mode: 'cors',
+            origin: 'http://localhost:3000/',
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
+        }).then(res => res.json())
+            .then(data => {
+                setHalls(data)
+            })
+            .catch(err => {
+                alert(err)
+                console.log(err);
+            })
+        fetch('http://localhost:9999/batches', {
+            method: 'GET',
+            mode: 'cors',
+            origin: 'http://localhost:3000/',
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
+        }).then(res => res.json())
+            .then(data => {
+                setBatches(data)
+            })
+            .catch(err => {
+                alert(err)
+                console.log(err);
+            })
+        fetch('http://localhost:9999/courses', {
+            method: 'GET',
+            mode: 'cors',
+            origin: 'http://localhost:3000/',
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
+        }).then(res => res.json())
+            .then(data => {
+                setCourses(data)
+            })
+            .catch(err => {
+                alert(err)
+                console.log(err);
+            })
+        fetch('http://localhost:9999/pairings', {
+            method: 'GET',
+            mode: 'cors',
+            origin: 'http://localhost:3000/',
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
+        }).then(res => res.json())
+            .then(data => {
+                setPairings(data)
+            })
+            .catch(err => {
+                alert(err)
+                console.log(err);
+            })
+
+    },[])
 
     return (
 
             <Router>
-                <SessionContext.Provider value={{interim, setInterim,serversess,setServersess,goneHome,setGoneHome}}>
+                <SessionContext.Provider value={{interim, setInterim,serversess,setServersess,halls,pairings,departments,batches,lecturers,courses,goneHome,setGoneHome}}>
                 <Navbar/>
                 <Switch>
                     <Route path='/' exact component={Home}/>

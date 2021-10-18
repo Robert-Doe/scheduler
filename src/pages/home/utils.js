@@ -56,12 +56,43 @@ export const getRandomTime =  (hours, lecturerId, batchId, schedules) => {
     const sFreePeriods = studentFreeTime(batchId, hours, schedules);
     const lFreePeriods = lecturerFreeTime(lecturerId, hours, schedules);
     const bestTimes = sFreePeriods.filter(x => lFreePeriods.includes(x));
+
+    let daySessions=[];
+    days.forEach((day,index)=>{
+        daySessions[index]=bestTimes.filter(period=>period.split('-')[0]===day)
+    });
+    let targetChoice=daySessions.reduce((a,b)=>a.length>b.length?a:b);
+    let targetNumber=targetChoice.length;
+    let targetDays=daySessions.filter(sessionDay=>sessionDay.length===targetNumber);
+
+    targetChoice= targetDays[Math.floor(Math.random() * targetDays.length)];
+
+    // if (bestTimes !== []) {
+    //     sampletime = bestTimes[Math.floor(Math.random() * bestTimes.length)]
+    // }
+
+    if (targetChoice !== []) {
+        sampletime = targetChoice[Math.floor(Math.random() * targetChoice.length)]
+    }
+
+    return sampletime;
+}
+
+/*
+export const getRandomTime =  (hours, lecturerId, batchId, schedules) => {
+    let sampletime = 'Mon-00-00';
+    const sFreePeriods = studentFreeTime(batchId, hours, schedules);
+    const lFreePeriods = lecturerFreeTime(lecturerId, hours, schedules);
+    const bestTimes = sFreePeriods.filter(x => lFreePeriods.includes(x));
     if (bestTimes !== []) {
         sampletime = bestTimes[Math.floor(Math.random() * bestTimes.length)]
     }
 
     return sampletime;
 }
+*/
+
+
 
 const studentFreeTime =  (batchId, time, schedules) => {
     const currentSchedule =schedules.map(session => {

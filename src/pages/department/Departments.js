@@ -48,20 +48,21 @@ function Departments() {
                     <th>#id</th>
                     <th>Name</th>
                     <th>Abbr</th>
-                    <th>Lecturers' Schedule</th>
-                    <th>Students' Schedule</th>
+                    <th>Schedule</th>
+                    {/*<th>Students' Schedule</th>*/}
                 </tr>
                 </thead>
                 <tbody>
                 {departmentList && departmentList.map((department) => {
                     const {_id, name, dept_abbr} = department;
+                    console.log(department)
                     return (
                         <tr key={_id}>
                             <td><Link to={`/departments/view/${_id}`}>{_id}</Link></td>
                             <td>{name}</td>
                             <td>{dept_abbr}</td>
-                            <td className={'d-flex justify-content-center'}><Link class={'badge badge-warning w-50 py-1 text-light font-weight-normal'} style={{borderRadius:'30px'}} to={`tables/lecturers/department/${_id}`}>Preview (L)</Link></td>
-                            <td><Link class={'badge badge-success w-50 py-1 text-light font-weight-normal'}  to={`tables/batches/department/${_id}`} style={{borderRadius:'30px'}}>Preview (S)</Link></td>
+                            <td className={'d-flex justify-content-center'}><Link className={'badge badge-warning px-3 py-2 mx-2 text-light font-weight-normal'} style={{borderRadius:'30px'}} to={`tables/lecturers/department/${_id}`}>Lecturers</Link>
+                            <Link className={'badge badge-success px-3 py-2 mx-2 text-light font-weight-normal'}  to={`tables/batches/department/${_id}`} style={{borderRadius:'30px'}}>Students</Link></td>
                         </tr>
                     )
                 })}

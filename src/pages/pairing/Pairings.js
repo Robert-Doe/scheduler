@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {ButtonNav} from "../../components/ButtonNav";
+import {SessionContext} from "../../App";
 
 
 function Pairings() {
@@ -58,10 +59,13 @@ function Pairings() {
     }, [])
 
     const getLecturer = (lecturer_id) => {
-        return lecturers.filter(lect => lect._id === lecturer_id)[0]
+        const found=lecturers.filter(lect => lect._id === lecturer_id)[0]
+        return found?found:{fname:'Unknown',lname:'Unknown'}
     }
     const getCourse = (course_id) => {
-        return courses.filter(course => course._id === course_id)[0]
+        const found=courses.filter(course => course._id === course_id)[0]
+        return found?found:{name:'Not Found'}
+
     }
     const viewPairHandler = (e) => {
         const targetFile = e.target.parentNode;
@@ -88,14 +92,15 @@ function Pairings() {
                 </thead>
                 <tbody>
                 {pairings.map((pair) => {
+                    console.log(pair)
                     const {fname,lname}=getLecturer(pair.lecturer_id);
                     const {name}=getCourse(pair.course_id);
                     console.log(courses/*getCourse(pair.course_id)*/)
                     console.log(pair)
                     return (<tr onClick={viewPairHandler} key={Math.random()}>
                             <td>{pair._id}</td>
-                            <td>{`${fname} ${lname}`}</td>
-                            <td>{`${name}`}</td>
+                            <td>{`${fname?fname:'Unknown'} ${lname?fname:'Unknown'}`}</td>
+                            <td>{`${name?name:'Unknown'}`}</td>
                         </tr>
                     )
                 })

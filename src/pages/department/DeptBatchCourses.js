@@ -190,12 +190,11 @@ export function DeptBatchCourses() {
                 }
             }).then(response => response.json())
                 .then(data => {
-                    console.log(data)
-                    responseRef.current.value = data.msg;
+                    console.log(data.msg)
+                    alert(data.msg)
                 })
                 .catch(err => {
                     console.log(err)
-                    responseRef.current.value = err.msg;
                 })
 
         }
@@ -209,7 +208,7 @@ export function DeptBatchCourses() {
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                         <li className="breadcrumb-item"><Link to="/departments">Departments</Link></li>
-                        <li className="breadcrumb-item active" aria-current="page">Add</li>
+                        <li className="breadcrumb-item active" aria-current="page">Course Subscription</li>
                     </ol>
                 </nav>
 
@@ -253,14 +252,14 @@ export function DeptBatchCourses() {
                             <select className="form-control" id="exampleFormControlSelect1" ref={coursesRef}
                                     onChange={changeCourseHandler}>
                                 {courses.map((course) => {
-                                    return (<option key={course._id} data-id={course._id}>{course._id}</option>)
+                                    return (<option key={course._id} data-id={course._id}>{`${course._id} ${course.name}` }</option>)
                                 })}
                             </select>
                         </div>
                     </div>
 
                     <div className="row">
-                        <div className="col-md-4 form-group pt-3">
+                        <div className="col-md-6 form-group pt-3">
                             <label htmlFor="exampleFormControlSelect1">Lecturers</label>
                             <select className="form-control" id="exampleFormControlSelect1" ref={lecturerRef}>
                                 {pairings.map((pair) => {
@@ -270,7 +269,7 @@ export function DeptBatchCourses() {
                             </select>
                         </div>
 
-                        <div className="col-md-4 pt-3">
+                        <div className="col-md-6 pt-3">
                             <label htmlFor="first_name" style={{color: '#f00'}}>Duration</label>
                             <select className="form-control" id="exampleFormControlSelect1"
                                     placeholder="Response :" ref={durationRef}>
@@ -282,20 +281,12 @@ export function DeptBatchCourses() {
                                 <option>6</option>
                             </select>
                         </div>
-
-                        <div className="col-md-4 pt-3">
-                            <label htmlFor="first_name" style={{color: '#f00'}}>Response</label>
-                            <input type="text" id={'response'} className="form-control" disabled
-                                   placeholder="Response :" ref={responseRef}/>
-                        </div>
                     </div>
-
-
 
                     <div className="row pt-3">
                         <div className="form-group">
-                            <input id={'add_dept'} className="btn btn-primary form-control" type={'submit'}
-                                   value={'Add Department'}/>
+                            <input id={'add_dept'} className="btn btn-warning form-control bg-theme-btn" type={'submit'}
+                                   value={'Subscribe'}/>
                         </div>
                     </div>
                 </form>

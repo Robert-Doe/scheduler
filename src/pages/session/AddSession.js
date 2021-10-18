@@ -58,10 +58,7 @@ function AddSession() {
     const batchDeptHandler = (e) => {
         setBatchDeptId(getCurrentId(batchDeptRef))
     }
-
-    const pairId = (lRef, cRef) => `${value(lRef)}-${value(cRef)}`;
-
-    //const period = (dRef, pRef, tRef) => `${days[value(dRef)]}-${value(periodRef)}-${value(tRef)}`
+//const period = (dRef, pRef, tRef) => `${days[value(dRef)]}-${value(periodRef)}-${value(tRef)}`
 
     useEffect(() => {
         fetch('http://localhost:9999/departments', {
@@ -340,16 +337,11 @@ function AddSession() {
                                 <option>SF5</option>
                             </select>
                         </div>
-                        <div className="col-lg-6 pt-2">
-                            <label htmlFor="first_name" className={'text-danger text-bold'}>Status</label>
-                            <input type="text" id={'first_name'} className="form-control" disabled ref={statusRef}
-                                   placeholder="Feasible Session Placement"/>
-                        </div>
                     </div>
                     <div className="row">
                         <div className="col-lg-4 pt-2">
                             <div className="form-group">
-                                <input id={'add_lecturer'} className="btn btn-warning form-control bg-theme-btn" type={'submit'}
+                                <input id={'add_lecturer'} className="btn btn-warning form-control bg-theme-btn justify-content-center" type={'submit'}
                                        value={'Add Session'}/>
                             </div>
                         </div>

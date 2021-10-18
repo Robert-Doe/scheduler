@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Link} from "react-router-dom";
 import {BatchNavData} from "../../components/BatchNavData";
-import {acceptCSV,getCurrentId,value,refEmpty} from "../../util/manipulator";
+import {acceptCSV, getCurrentId, value, refEmpty} from "../../util/manipulator";
 import {ButtonNav} from "../../components/ButtonNav";
 
 
@@ -15,19 +15,19 @@ function AddBatch() {
     const [departments, setDepartments] = useState([]);
     const [success, setSuccess] = useState([]);
 
-  /*  const refEmpty = (ref) => {
-        return ref.current.value === ''
-    }
+    /*  const refEmpty = (ref) => {
+          return ref.current.value === ''
+      }
 
-    const value = (ref) => ref.current.value
+      const value = (ref) => ref.current.value
 
-    const getCurrentId = (ref) => {
-        let activeTags = []
-        const currentNodes = ref.current.childNodes
-        Object.keys(currentNodes).forEach(e => activeTags = [currentNodes[e], ...activeTags])
-        return activeTags.find(node => node.value === value(ref)).dataset.id
-    }
-*/
+      const getCurrentId = (ref) => {
+          let activeTags = []
+          const currentNodes = ref.current.childNodes
+          Object.keys(currentNodes).forEach(e => activeTags = [currentNodes[e], ...activeTags])
+          return activeTags.find(node => node.value === value(ref)).dataset.id
+      }
+  */
     const sendCSV = (e) => {
         e.preventDefault();
         if (csvRef.current.value) {
@@ -42,23 +42,40 @@ function AddBatch() {
             let req = new Request('http://localhost:9999/batches/upload', {
                 method: 'POST', headers: h, mode: 'cors', body: fd
             });
-            fetch(req).then(response => response.json()).then(json=>console.log(json)).catch((err) => console.log(err))
+            fetch(req).then(response => response.json()).then(json => {
+                // alert(json.msg)
+                // console.log(json)
+                if (json.status === 'success'){
+                    setSuccess((prev) => [{status:'success',message:"Added Successfully",id:null}, ...prev]);
+                    console.log(json)
+                }else if(json.status==='rejected'){
+                    console.log(json)
+                    setSuccess((prev) => [{status:'danger',message:json.msg,id:null}, ...prev]);
+                }else{
+                    console.log(json)
+                    setSuccess((prev) => [{status:'danger',message:'Duplicate Files',id:json.error.writeErrors[0].op._id}, ...prev]);
+                }
+            })
+                .catch((err) =>{
+                    console.log("Error", err)
+                    setSuccess((prev) => [{status:'danger',message:"Duplicated Detected -",id:'Error'}, ...prev]);
+                })
         } else {
             alert('Fill All inputs');
         }
-
+        const timeout=setTimeout(() => setSuccess([]), 4000)
     }
 
- /*   const acceptCSV = (e) => {
-        if (e.target.files[0] !== undefined) {
-            if (e.target.files[0].type !== "application/vnd.ms-excel") {
-                e.target.parentNode.reset();
-            } else {
-                alert('File Accepted');
-            }
-            // console.log(e.target.files[0].type);
-        }
-    }*/
+    /*   const acceptCSV = (e) => {
+           if (e.target.files[0] !== undefined) {
+               if (e.target.files[0].type !== "application/vnd.ms-excel") {
+                   e.target.parentNode.reset();
+               } else {
+                   alert('File Accepted');
+               }
+               // console.log(e.target.files[0].type);
+           }
+       }*/
 
     useEffect(() => {
         fetch('http://localhost:9999/departments', {
@@ -82,7 +99,6 @@ function AddBatch() {
     }, [])
 
 
-
     const addBatchHandler = (e) => {
         e.preventDefault();
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -97,9 +113,10 @@ function AddBatch() {
 
         if (!refEmpty(deptRef) && !refEmpty(sizeRef) && !refEmpty(yearRef) && !refEmpty(nameRef)) {
 
+            setSuccess([])
             for (let i = 0; i < division; i++) {
                 const newBatch = {
-                    _id:`${deptValue}-${yearValue}-${characters.charAt(i)}`,
+                    _id: `${deptValue}-${yearValue}-${characters.charAt(i)}`,
                     year: yearValue,
                     size: Math.floor(sizeValue),
                     dept_id: deptValue,
@@ -119,12 +136,21 @@ function AddBatch() {
                         console.log(data)
                         //responseRef.current.value = data.msg;
                         // console.log('I am here at the Inserting');
-                        if (data.status === 'success')
-                            setSuccess((prev) => [newBatch.name, ...prev]);
+                        if (data.status === 'success') {
+                            //setSuccess((prev) => [newBatch.name, ...prev]);
+                            setSuccess((prev) => [{status: 'success', message: "Added Successfully -", id: `${newBatch._id}`}, ...prev])
+                        } else {
+                            throw Error("Duplicate Detected")
+                        }
                     })
                     .catch(err => {
-                        console.log(err);
-                        alert('Error Inserting');
+                        // console.log(err);
+                        // alert('Error Inserting');
+                        setSuccess((prev) => [{
+                            status: 'danger',
+                            message: "Duplicated Detected -",
+                            id: `${newBatch._id}`
+                        }, ...prev])
                         //responseRef.current.value = err.msg
                     })
             }
@@ -133,9 +159,8 @@ function AddBatch() {
             alert("All Fields are important")
         }
 
-        setTimeout(() => setSuccess([]), 2000)
+        setTimeout(() => setSuccess([]), 4000)
     }
-
 
     return (
         <section className={'container mt-5 py-5'}>
@@ -148,6 +173,21 @@ function AddBatch() {
             </nav>
             <section className={'px-5'}>
 
+                {/*{success && success.map((suc, index) => {
+                    return (
+                        <div style={{display:'absolute'}} className="alert alert-warning text-center fade show w-100" role="alert" key={index}>
+                            <strong>Added Successfully!</strong> New Batch - {suc}
+                        </div>)
+                })}*/}
+                {success && success.map((suc, index) => {
+                    return (
+                        <div className={`alert alert-${suc.status} text-center fade show w-100`} role="alert"
+                             key={index}>
+                            <strong>{suc.message}</strong>  - {suc.id}
+                        </div>)
+                })}
+
+
                 <nav className='container-fluid'>
                     <div className="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
                         <a className="nav-link active" id="nav-days-tab" data-toggle="tab" href="#nav-days" role="tab"
@@ -158,10 +198,11 @@ function AddBatch() {
                 </nav>
                 <div className="tab-content" id="nav-tabContent">
                     {/*Orders TAB*/}
-                    <div className="tab-pane fade show active" id="nav-days" role="tabpanel" aria-labelledby="nav-days-tab">
+                    <div className="tab-pane fade show active" id="nav-days" role="tabpanel"
+                         aria-labelledby="nav-days-tab">
                         <section className="bg-admin">
 
-                           {/* <aside className={'nav-aside'}>
+                            {/* <aside className={'nav-aside'}>
                                 <ul>
                                     {BatchNavData.map((item, index) => {
                                         return (
@@ -207,12 +248,14 @@ function AddBatch() {
                                 <div className="row">
                                     <div className="col-lg-4 pt-3">
                                         <label htmlFor="first_name">Class Size</label>
-                                        <input type="number" id={'size'} className="form-control" placeholder="Batch Size"
+                                        <input type="number" id={'size'} className="form-control"
+                                               placeholder="Batch Size"
                                                ref={sizeRef} min={0}/>
                                     </div>
                                     <div className="col-lg-4 pt-3">
                                         <label htmlFor="name">Name</label>
-                                        <input type="text" id={'name'} className="form-control" placeholder="Name" ref={nameRef}/>
+                                        <input type="text" id={'name'} className="form-control" placeholder="Name"
+                                               ref={nameRef}/>
                                     </div>
                                     {/*<div className="col-lg-4 pt-3">*/}
                                     {/*<label htmlFor="first_name" style={{color: '#f00'}}>Response</label>
@@ -235,72 +278,30 @@ function AddBatch() {
 
 
                                     <div className="row pt-3">
-                                        <div className="form-group  d-flex justify-content-center">
-                                            <input id={'add_lecturer'} className="btn btn-warning form-control bg-theme-btn" type={'submit'}
+                                        <div className="d-flex justify-content-center">
+                                            <input id={'add_lecturer'}
+                                                   className="btn btn-warning form-control bg-theme-btn" type={'submit'}
                                                    value={'Add Batch'}/>
                                         </div>
                                     </div>
                                 </div>
                             </form>
-                            {success && success.map((suc, index) => {
-                                return (
-                                    <div className="alert alert-warning alert-dismissible fade show" role="alert" key={index}>
-                                        <strong>Added Successfully!</strong> New Batch - {suc}
-                                    </div>)
-                            })}
-
 
                         </section>
                     </div>
                     {/*Users TAB*/}
                     <div className="tab-pane fade" id="nav-theme" role="tabpanel" aria-labelledby="nav-theme-tab">
                         <section className={'my-5'}>
-                             <form onSubmit={sendCSV} className={'d-flex flex-column align-items-center'}>
-                                <input type="file" name="csvfile" className={'form-control-sm my-3'} ref={csvRef} accept={'text/csv'} onChange={acceptCSV}/>
-                                <input type='submit' value='Upload Batches' className={'btn-warning form-control-sm btn bg-theme'}/>
+                            <form onSubmit={sendCSV} className={'d-flex flex-column align-items-center'}>
+                                <input type="file" name="csvfile" className={'my-3 form-control-file'} ref={csvRef}
+                                       accept={'text/csv'} onChange={acceptCSV}/>
+                                <input type='submit' value='Upload Batches'
+                                       className={'btn btn-warning form-control bg-theme-btn'}/>
                             </form>
                         </section>
                     </div>
 
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
         </section>
     )

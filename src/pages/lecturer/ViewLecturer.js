@@ -73,8 +73,8 @@ function ViewLecturer() {
                     <dt>Pairings</dt>
                     <dd>{department && `${pairings.length}`}</dd>
 
-                    <dt>Pairing</dt>
-                    <dd>{department && `${pairings.length}`}</dd>
+                   {/* <dt>Pairing</dt>
+                    <dd>{department && `${pairings.length}`}</dd>*/}
                 </dl>
                 <div className="accordion" id="accordionExample">
                     <div className="card">
@@ -93,8 +93,10 @@ function ViewLecturer() {
                             <div className="card-body px-5">
                                 <table className="table table-bordered">
                                     <thead className={'thead-dark'}>
+                                    <tr>
                                         <th>Index</th>
                                         <th>Course Code</th>
+                                    </tr>
                                     </thead>
                                     {pairings.map((pair,index)=>{
 
@@ -121,8 +123,6 @@ function ViewLecturer() {
                         <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo"
                              data-parent="#accordionExample">
                             <div className="card-body">
-                                Some placeholder content for the second accordion panel. This panel is hidden by
-                                default.
                             </div>
                         </div>
                     </div>

@@ -1,39 +1,59 @@
-import React,{useState,useEffect} from 'react';
-import {Table} from "./Table";
+import React,{useState,useEffect,useContext} from 'react';
+import {Table} from "../table/Table";
+import {SessionContext} from "../../App";
+import {Link, useParams} from "react-router-dom";
+
 
 
 export function DownloadLecturers(){
 
-    const [lecturers, setLecturers] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:9999/lecturers', {
-            method: 'GET',
-            mode: 'cors',
-            origin: 'http://localhost:3000/',
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Content-Type": "application/json"
-            }
-        }).then(res => res.json())
-            .then(data => {
-                setLecturers(data)
-            })
-            .catch(err => {
-                alert(err)
-                console.log(err);
-            })
-    }, [])
+    const {lecturers,departments}=useContext(SessionContext);
 
 
 
+    let {id} = useParams();
+
+
+    const getDeptLecturers=(deptId)=>{
+        return lecturers.filter(tutor=>tutor.dept_id===deptId);
+    }
+
+    const getDepartmentName=(deptId)=>{
+        let foundDept=departments.filter(dept=>dept._id===deptId)[0]
+        return foundDept?foundDept.name:'Verify';
+    }
+
+    function printDiv() {
+        const headers = document.getElementsByTagName('head')[0];
+        const divContents = document.getElementById("tables");
+        const a = window.open('', '', '');
+        a.document.write(headers.innerHTML+divContents.innerHTML);
+        console.log(headers);
+        //a.document.write(document.children[0].innerHTML);
+        a.print();
+        a.document.close();
+    }
     return(
         <section className="container-fluid">
+            <div className="container mt-3">
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><Link to={"/"}>Home</Link></li>
+                        <li className="breadcrumb-item"><Link to={'/lecturers'}>Lecturers</Link></li>
+                        <li className="breadcrumb-item active" aria-current="page">{getDepartmentName(id)}</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <button className={'btn btn-success'} onClick={printDiv}>Print Me</button>
+            <main id={'tables'}>
+                <h1 className={'text-center font-weight-bolder'}>General Timetable of {getDepartmentName(id)} Department</h1>
             {
-                lecturers.map((lecturer)=>{
+                getDeptLecturers(id).map((lecturer)=>{
                    return( <Table id={lecturer._id}/>)
                 })
             }
+            </main>
         </section>
 
     )
